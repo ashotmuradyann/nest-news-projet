@@ -1,5 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { IsUUID } from "class-validator";
+import { IsOptional, IsUUID } from "class-validator";
 
 @InputType()
 export class NewsUpdateInput{
@@ -13,7 +13,13 @@ export class NewsUpdateInput{
   @Field({nullable:true})
   name: string
 
-  @Field({nullable:true})
-  @IsUUID()
-  category: string
+  @Field(()=>[String], {nullable: true})
+  @IsOptional()
+  @IsUUID(4,{each:true})
+  categories: string[]
+
+  @Field(()=>[String], {nullable: true})
+  @IsOptional()
+  @IsUUID(4,{each:true})
+  medias: string[]
 }

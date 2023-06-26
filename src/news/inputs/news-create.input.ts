@@ -1,5 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { IsUUID } from "class-validator";
+import { IsOptional, IsUUID } from "class-validator";
 import { MaxLength } from "class-validator";
 
 @InputType()
@@ -11,7 +11,12 @@ export class NewsCreateInput{
   @MaxLength(10)
   name: string
 
-  @Field()
-  @IsUUID()
-  category: string
+  @Field(()=>[String])
+  @IsUUID(4,{each:true})
+  categories: string[]
+
+  @Field(()=>[String], {nullable: true})
+  @IsOptional()
+  @IsUUID(4,{each:true})
+  medias: string[]
 }

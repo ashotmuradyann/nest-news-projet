@@ -1,8 +1,9 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { NewsEntity } from "./entities/news-create.entity";
+import { NewsEntity } from "./entities/news.entity";
 import { NewsService } from "./news.service";
 import { NewsCreateInput } from "./inputs/news-create.input";
 import { NewsUpdateInput } from "./inputs/news-update.input";
+import { UuidInput } from "../validation/uuid.schema";
 
 @Resolver("news")
 export class NewsResolver{
@@ -25,7 +26,7 @@ export class NewsResolver{
   }
 
   @Mutation(()=>String)
-  async removeNews(@Args("id") id: string){
-    return await this.newsService.removeNews(id)
+  async removeNews(@Args("args") args: UuidInput){
+    return await this.newsService.removeNews(args.id)
   }
 }

@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UUIDScalar } from './uuid.scalar';
 import { NewsModule } from "./news/news.module";
 import { CategoryModule } from "./categories/category.module";
+import { FilesModule } from "./files/file.module";
 
 @Module({
   imports: [
@@ -32,11 +33,12 @@ import { CategoryModule } from "./categories/category.module";
         entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
         synchronize: true,
         autoLoadEntities: true,
-        logging: true,
+        logging: false,
       }),
     }),
     NewsModule,
-    CategoryModule
+    CategoryModule,
+    FilesModule
   ],
   controllers: [AppController],
   providers: [AppService],

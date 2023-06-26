@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CategoryService } from "./category.service";
-import { CategoryEntity } from "./entities/category-create.entity";
+import { CategoryEntity } from "./entities/category.entity";
 import { CategoryCreateInput } from "./inputs/category-create.input";
 import { CategoryUpdateInput } from "./inputs/category-update.input";
 

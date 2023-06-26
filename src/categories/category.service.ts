@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CategoryEntity } from "./entities/category-create.entity";
+import { CategoryEntity } from "./entities/category.entity";
 import { CategoryCreateInput } from "./inputs/category-create.input";
 import { CategoryUpdateInput } from "./inputs/category-update.input";
 
@@ -22,7 +22,12 @@ export class CategoryService{
   }
 
   async getCategory(){
-    return await this.categoryRepository.find()
+    const cat = await this.categoryRepository.find({
+      relations: {
+        news: true
+      }
+    })
+    return cat
   }
 
   async deleteCategory(id: string){
